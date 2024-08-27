@@ -1,0 +1,31 @@
+{
+	"manifest_version": 3,
+	"name": "Nuke JS",
+	"description": "Nuke JavaScript on pages that need it.",
+	"version": "0.0.1",
+	"developer": {
+		"name": "vrugtehagel",
+		"url": "https://github.com/vrugtehagel/nuke-js"
+	},
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"permissions": [
+		"activeTab",
+		"storage",
+		"webRequest",
+		"webRequestBlocking",
+		"browsingData"
+	],
+	"host_permissions": ["<all_urls>"],
+	"action": {
+		"default_title": "Nuke it!",
+		"default_area": "navbar",
+		"default_icon": {
+			"48": "icon.svg"
+		}
+	},
+	"icons": {
+		"48": "icon.svg"
+	}
+}
