@@ -4,7 +4,7 @@
 	"description": "Does a website bomb you with ads and popups? You are in control. Nuke 'em back.",
 	"version": "0.0.1",
 	"browser_specific_settings": {
-		"gecko": {"vrugtehagel/nuke-js"}
+		"gecko": {"id": "vrugtehagel/nuke-js"}
 	},
 	"developer": {
 		"name": "vrugtehagel",
