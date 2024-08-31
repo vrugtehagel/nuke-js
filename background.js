@@ -31,15 +31,16 @@ async function nuke(origin){
 	}
 	cache.set(origin, restore)
 	browser.storage.local.set({[origin]: true})
-	const { hostname } = new URL(origin)
-	await browser.browsingData.remove({
-		hostnames: [hostname]
-	}, {cookies: true, cache: true})
+	const hostnames = [new URL(origin).hostname]
+	const removing = {cookies: true, cache: true}
+	await browser.browsingData.remove({hostnames}, removing)
 	const tabs = await browser.tabs.query({url: `${origin}/*`})
 	for(const tab of tabs) browser.tabs.reload(tab.id)
 }
 
-// Block scripts requested by a nuked origin
+// Block scripts requested by a nuked origin.
+// Technically, we don't need to do this; the scripts won't run due to the
+// added CSP. But, not downloading them is still a bandwidth win.
 browser.webRequest.onBeforeRequest.addListener(event => {
 	const originUrl = new URL(event.originUrl)
 	if(cache.has(originUrl.origin)) return {cancel: true}
