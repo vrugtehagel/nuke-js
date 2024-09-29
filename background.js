@@ -4,7 +4,7 @@ browser.action.onClicked.addListener(async () => {
 	const {origin} = new URL(activeTab.url)
 	const restore = cache.get(origin)
 	if(restore) restore()
-	else nuke(origin)
+	else nuke(origin).then(() => reload(origin))
 	updateIcon(activeTab)
 })
 
@@ -34,6 +34,9 @@ async function nuke(origin){
 	const hostnames = [new URL(origin).hostname]
 	const removing = {cookies: true, cache: true}
 	await browser.browsingData.remove({hostnames}, removing)
+}
+
+async function reload(origin){
 	const tabs = await browser.tabs.query({url: `${origin}/*`})
 	for(const tab of tabs) browser.tabs.reload(tab.id)
 }
