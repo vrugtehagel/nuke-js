@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "Nuke JS",
 	"description": "Does a website bomb you with ads and popups? You are in control. Nuke 'em back.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"browser_specific_settings": {
 		"gecko": {"id": "nuke-js@vrugtehagel"}
 	},
